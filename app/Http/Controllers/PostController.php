@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use App\Models\Post;
+use App\Models\Nice;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
@@ -69,11 +70,9 @@ class PostController extends Controller
     public function show(string $id)
     {
         $post = Post::find($id);
-
-        return view('posts.show', compact('post', 'nice'));
-
         $nice = Nice::where('post_id', $post->id)->where('user_id', auth()->user()->id)->first();
-        return view('post.show', compact('post', 'nice'));
+        // dd($nice);
+        return view('posts.show', compact('post', 'nice'));
     }
 
     /**

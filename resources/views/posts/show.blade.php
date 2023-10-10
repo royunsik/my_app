@@ -34,7 +34,7 @@
                 <img src="{{ asset('img/nicebutton.png') }}" width="30px">
 
                 <!-- もし$niceがあれば＝ユーザーが「いいね」をしていたら -->
-                @if ($nice)
+                @if(isset($nice))
                     <!-- 「いいね」取消用ボタンを表示 -->
                     <a href="{{ route('unnice', $post) }}" class="btn btn-success btn-sm">
                         いいね
