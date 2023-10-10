@@ -3,6 +3,7 @@
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\NiceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,5 +35,9 @@ Route::resource('posts', PostController::class)
 
 Route::resource('posts', PostController::class)
     ->only(['show', 'index']);
+
+Route::get('/community/nice/{post}', [NiceController::class, 'nice'])->name('nice');
+
+Route::get('/community/unnice/{post}', [NiceController::class, 'unnice'])->name('unnice');
 
 require __DIR__ . '/auth.php';
