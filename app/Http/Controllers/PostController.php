@@ -70,9 +70,9 @@ class PostController extends Controller
     {
         $post = Post::find($id);
 
-        return view('posts.show', compact('post'));
+        return view('posts.show', compact('post', 'nice'));
 
-        $nice=Nice::where('post_id', $post->id)->where('user_id', auth()->user()->id)->first();
+        $nice = Nice::where('post_id', $post->id)->where('user_id', auth()->user()->id)->first();
         return view('post.show', compact('post', 'nice'));
     }
 
