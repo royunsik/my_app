@@ -35,4 +35,4 @@ Route::resource('posts', PostController::class)
 Route::resource('posts', PostController::class)
     ->only(['show', 'index']);
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
