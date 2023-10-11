@@ -13,15 +13,20 @@ class NiceController extends Controller
     {
         $nice = new Nice();
         $nice->post_id = $post->id;
-        $nice->user_id = Auth::user()->id;
+        $nice->ip = $request->ip();
+
+        if (Auth::check()) {
+            $nice->user_id = Auth::user()->id;
+        }
+
         $nice->save();
         return back();
     }
 
     public function unnice(Post $post, Request $request)
     {
-        $user = Auth::user()->id;
-        $nice = Nice::where('post_id', $post->id)->where('user_id', $user)->first();
+        $user=$request->ip();
+        $nice=Nice::where('post_id', $post->id)->where('ip', $user)->first();
         $nice->delete();
         return back();
     }
