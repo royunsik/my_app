@@ -67,13 +67,21 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
-    {
-        $post = Post::find($id);
-        $nice = Nice::where('post_id', $post->id)->where('user_id', auth()->user()->id)->first();
-        // dd($nice);
+    // public function show(string $id)
+    // {
+    //     $post = Post::find($id);
+    //     $nice = Nice::where('post_id', $post->id)->where('user_id', auth()->user()->id)->first();
+        
+    //     return view('posts.show', compact('post', 'nice'));
+    // }
+    public function show(Post $post)
+    {  
+        $request=request();
+        $ip = $request->ip();
+        $nice=Nice::where('post_id', $post->id)->where('ip', $ip)->first();
         return view('posts.show', compact('post', 'nice'));
     }
+
 
     /**
      * Show the form for editing the specified resource.

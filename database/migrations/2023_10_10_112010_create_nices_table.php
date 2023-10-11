@@ -14,7 +14,10 @@ return new class extends Migration
         Schema::create('nices', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('post_id')->nullable();
+            $table->unsignedBigInteger('comment_id')->nullable();
             $table->unsignedBigInteger('user_id')->nullable();
+            // このカラムを追加
+            $table->string('ip')->nullable();
             $table->timestamps();
         });
     }

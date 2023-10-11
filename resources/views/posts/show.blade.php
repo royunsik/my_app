@@ -19,24 +19,23 @@
         <div class="flex flex-row text-center my-4">
             @can('update', $post)
                 <a href="{{ route('posts.edit', $post) }}"
-                    class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-20 mr-2">編集</a>
+                    class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline h-10 w-20 mr-2">編集</a>
             @endcan
             @can('delete', $post)
                 <form action="{{ route('posts.destroy', $post) }}" method="post">
                     @csrf
                     @method('DELETE')
                     <input type="submit" value="削除" onclick="if(!confirm('削除しますか？')){return false};"
-                        class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-20">
+                        class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-2 rounded focus:outline-none focus:shadow-outline w-20">
                 </form>
             @endcan
-
+            <br>
             <span>
-                <img src="{{ asset('img/nicebutton.png') }}" width="30px">
-
+                <img src="{{ asset('img/20170919_ushi_icon.svg') }}" width="100px">
                 <!-- もし$niceがあれば＝ユーザーが「いいね」をしていたら -->
-                @if(isset($nice))
+                @if (isset($nice))
                     <!-- 「いいね」取消用ボタンを表示 -->
-                    <a href="{{ route('unnice', $post) }}" class="btn btn-success btn-sm">
+                    <a href="{{ route('unnice', $post) }}" class="bg-gradient-to-r from-blue-300 to-blue-800 hover:bg-gradient-to-l text-white rounded px-4 py-2">
                         いいね
                         <!-- 「いいね」の数を表示 -->
                         <span class="badge">
@@ -45,7 +44,7 @@
                     </a>
                 @else
                     <!-- まだユーザーが「いいね」をしていなければ、「いいね」ボタンを表示 -->
-                    <a href="{{ route('nice', $post) }}" class="btn btn-secondary btn-sm">
+                    <a href="{{ route('nice', $post) }}" class="bg-gray-400 hover:bg-gray-300 text-white rounded px-4 py-2">
                         いいね
                         <!-- 「いいね」の数を表示 -->
                         <span class="badge">
