@@ -29,7 +29,7 @@
                         class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-2 rounded focus:outline-none focus:shadow-outline w-20">
                 </form>
             @endcan
-            <br>
+            
             <span>
                 <img src="{{ asset('img/20170919_ushi_icon.svg') }}" width="100px">
                 <!-- もし$niceがあれば＝ユーザーが「いいね」をしていたら -->
