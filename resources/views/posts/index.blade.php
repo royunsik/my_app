@@ -8,7 +8,7 @@
         <div id="home" class="big-bg">
             <img src="{{ asset('img/11062b_cd3175f6aa574fd099bc7dcfae4e608b~mv2.jpeg') }}" class="bg-cover mt-8">
             <div class="home-content wrapper">
-                <h2 class="page-title text-5xl text-center my-12 font-bold">牛の数だけ牛タンがある<h2>
+                <h2 class="page-title text-5xl text-center my-12 font-bold">牛タンの数だけ笑顔がある<h2>
             </div><!-- /.home-content -->
         </div><!-- /#home -->
     </body>
