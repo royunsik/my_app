@@ -8,17 +8,24 @@ use App\Models\Post;
 use App\Models\Nice;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $posts = Post::with('user')->latest()->paginate(4);
-
-        return view('posts.index', compact('posts'));
+        $search = $request->input('search');
+        // 検索しなかったとき降順で表示する
+        $query = Post::with('user')->latest();
+        if (isset($search)) {
+            $posts = $query->where('title', 'LIKE', "%{$search}%")->paginate(4);
+        } else {
+            $posts = $query->paginate(4);
+        }
+        return view('posts.index', compact('posts', 'search'));
     }
 
     /**
@@ -71,14 +78,14 @@ class PostController extends Controller
     // {
     //     $post = Post::find($id);
     //     $nice = Nice::where('post_id', $post->id)->where('user_id', auth()->user()->id)->first();
-        
+
     //     return view('posts.show', compact('post', 'nice'));
     // }
     public function show(Post $post)
-    {  
-        $request=request();
+    {
+        $request = request();
         $ip = $request->ip();
-        $nice=Nice::where('post_id', $post->id)->where('ip', $ip)->first();
+        $nice = Nice::where('post_id', $post->id)->where('ip', $ip)->first();
         return view('posts.show', compact('post', 'nice'));
     }
 
